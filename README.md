@@ -60,10 +60,10 @@ npx cdk deploy -c internalALB=true
 #### Customize the version of Kubernetes
 The solution will create [Kubernetes 1.20](https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-versions.html#kubernetes-1.20) by default. You can specify other Kubernetes versions like below,
 ```
-npx cdk deploy <other options> --parameters KubernetesVersion=1.19
+npx cdk deploy <other options> --parameters KubernetesVersion=1.22
 ```
 
-**NOTE**: `1.20`, `1.19` and `1.18` are allowed versions. You can NOT enable [auto configuration feat](#auto-configuration) when creating an EKS cluster with version **1.19**. See [this issue](https://github.com/aws/aws-cdk/issues/14933) for detail. 
+**NOTE**: `1.20`, `1.21 and `1.22` are allowed versions.
 
 #### Deploy to China regions
 Due to AWS load balancer has different policy requirement for partitions, you need speicfy the target region info via context `region` to pick the corresponding IAM policies.
@@ -74,7 +74,7 @@ npx cdk deploy <other options> -c region=cn-north-1
 #### Deploy to existing EKS cluster
 The solution could deploy the Nexus Repository OSS to the existing EKS cluster. There are some prerequisites that your EKS cluster must meet,
 
-- the version of EKS cluster is v1.17+,
+- the version of EKS cluster is v1.19+,
 - the EKS cluster has EC2 based node group which is required by EFS CSI driver,
 - the ARN of an IAM role mapped to the `system:masters` RBAC role. If the cluster you are using was created using the AWS CDK, the CloudFormation stack has an output that includes an IAM role that can be used. Otherwise, you can create an IAM role and map it to `system:masters` manually. The trust policy of this role should include the the `arn:aws::iam::${accountId}:root` principal in order to allow the execution role of the kubectl resource to assume it. Then you can follow the [eksctl guide](https://eksctl.io/usage/iam-identity-mappings/) to map the IAM role to Kubernetes RBAC,
 - the OpenId connect provider ARN of your EKS. You can find the ARN from IAM's console. If your cluster does not have an OpenId connect provider, you can follow the [eksctl guide](https://eksctl.io/usage/iamserviceaccounts/) to create one,
