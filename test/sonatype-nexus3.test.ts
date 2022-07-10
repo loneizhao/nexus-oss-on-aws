@@ -124,7 +124,7 @@ describe('Nexus OSS stack', () => {
             {
               Ref: 'DomainName',
             },
-            '","http":{"paths":[{"path":"/*","backend":{"serviceName":"ssl-redirect","servicePort":"use-annotation"}},{"path":"/*","backend":{"serviceName":"nexus3-sonatype-nexus","servicePort":8081}}]}},{"http":{"paths":[{"path":"/*","backend":{"serviceName":"nexus3-sonatype-nexus","servicePort":8081}}]}}]},"serviceAccount":{"create":false}}',
+	          '","http":{"paths":[{"path":"/","pathType":"Prefix","backend":{"service":{"name":"ssl-redirect","port":{"number":"use-annotation"}}}},{"path":"/","pathType":"Prefix","backend":{"service":{"name":"nexus3-sonatype-nexus","port":{"number":8081}}}}]}},{"http":{"paths":[{"path":"/","pathType":"Prefix","backend":{"service":{"name":"nexus3-sonatype-nexus","port":{"number":8081}}}}]}}]},"serviceAccount":{"create":false}}',
           ],
         ],
       },
@@ -299,7 +299,7 @@ describe('Nexus OSS stack', () => {
             {
               Ref: 'DomainName',
             },
-            '","http":{"paths":[{"path":"/*","backend":{"serviceName":"ssl-redirect","servicePort":"use-annotation"}},{"path":"/*","backend":{"serviceName":"nexus3-sonatype-nexus","servicePort":8081}}]}},{"http":{"paths":[{"path":"/*","backend":{"serviceName":"nexus3-sonatype-nexus","servicePort":8081}}]}}]},"serviceAccount":{"create":false},"config":{"enabled":true,"data":{"nexus.properties":"nexus.scripts.allowCreation=true"}},"deployment":{"additionalVolumeMounts":[{"mountPath":"/nexus-data/etc/nexus.properties","subPath":"nexus.properties","name":"sonatype-nexus-conf"}]}}',
+            '","http":{"paths":[{"path":"/","pathType":"Prefix","backend":{"service":{"name":"ssl-redirect","port":{"number":"use-annotation"}}}},{"path":"/","pathType":"Prefix","backend":{"service":{"name":"nexus3-sonatype-nexus","port":{"number":8081}}}}]}},{"http":{"paths":[{"path":"/","pathType":"Prefix","backend":{"service":{"name":"nexus3-sonatype-nexus","port":{"number":8081}}}}]}}]},"serviceAccount":{"create":false},"config":{"enabled":true,"data":{"nexus.properties":"nexus.scripts.allowCreation=true"}},"deployment":{"additionalVolumeMounts":[{"mountPath":"/nexus-data/etc/nexus.properties","subPath":"nexus.properties","name":"sonatype-nexus-conf"}]}}',
           ],
         ],
       },
@@ -681,7 +681,7 @@ describe('Nexus OSS stack', () => {
             {
               Ref: 'LogBucketCC3B17E8',
             },
-            ',access_logs.s3.prefix=albAccessLog"},"tls":{"enabled":false},"rules":[{"http":{"paths":[{"path":"/*","backend":{"serviceName":"nexus3-sonatype-nexus","servicePort":8081}}]}}]},"serviceAccount":{"create":false}}',
+            ',access_logs.s3.prefix=albAccessLog"},"tls":{"enabled":false},"rules":[{"http":{"paths":[{"path":"/","pathType":"Prefix","backend":{"service":{"name":"nexus3-sonatype-nexus","port":{"number":8081}}}}]}}]},"serviceAccount":{"create":false}}',
           ],
         ],
       },
